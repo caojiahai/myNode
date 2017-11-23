@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var querystring = require('querystring');
-//var handle = require('./account/loginCtrl')
 var connection = require('./../mysql/index');//引入mysql
-
-//console.log(handle)
 
 //登录
 router.get('/login', function(req, res) {
