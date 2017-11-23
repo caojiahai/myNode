@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var querystring = require('querystring');
-var connection = require('./../mysql/index');//引入mysql
+var cnt = require('./../mysql/index');//引入mysql
 
 //登录
 router.get('/login', function(req, res) {
@@ -41,14 +41,14 @@ router.post('/login', function(req, res) {
 //id
 router.post('/getUser',function(req,res){
 	console.log(req.body)
-	connection.connect();
+	cnt.connect();
 	let sql = 'select * from user where id='+req.body.id;
-	connection.query(sql,function(error,result){
+	cnt.query(sql,function(error,result){
 		if (error) throw error;
 		res.writeHead(200, {"Content-Type": "application/json"});
 		res.end(JSON.stringify(result[0]));
 	})
-	connection.end();
+	cnt.end();
 })
 
 module.exports = router;
