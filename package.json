@@ -1,0 +1,15 @@
+{
+	"name": "node",
+	"version": "0.0.1",
+	"author": "曹加海",
+	"description": "node工程配置",
+	"scripts": {
+		"s": "node app.js"
+	},
+	"dependencies": {
+		"express": "latest"
+	},
+	"devDependencies": {
+		"mysql": "^2.15.0"
+	}
+}
