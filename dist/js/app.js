@@ -26,8 +26,6 @@ const connection = mysql.createConnection({
 module.exports = connection;
 
 
-console.log(111111111111)
-console.log(222222222)
 var express = require('express');
 var router = express.Router();
 var querystring = require('querystring');
