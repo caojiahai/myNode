@@ -1,7 +1,7 @@
 var express = require('express');//用于管理路由
 var bodyParser = require('body-parser');//获取post请求body数据
-var routes = require('./../routes/index');//引入路由
-var error = require('./../error/index');//引入报错文件
+var routes = require('./src/routes/index');//引入路由
+var error = require('./src/error/index');//引入报错文件
 
 var app = express();
 
