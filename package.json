@@ -12,7 +12,8 @@
 		"babel-preset-es2015": "^6.24.1",
 		"express": "latest",
 		"gulp-imagemin": "^4.0.0",
-		"gulp-minify-css": "^1.2.4"
+		"gulp-minify-css": "^1.2.4",
+		"gulp-webserver": "^0.9.1"
 	},
 	"devDependencies": {
 		"gulp": "^3.9.1",
