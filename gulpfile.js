@@ -9,7 +9,9 @@ var gulp=require('gulp'),  //gulp基础库
     notify=require('gulp-notify'),   //提示
     babel=require('gulp-babel'),//使用ES6写的，需要先用 gulp-babel 编译一下再uglify
 //  browserSync = require('browser-sync').create()//打开浏览器
-	webserver = require('gulp-webserver')//打开浏览器
+	webserver = require('gulp-webserver'),//打开浏览器
+	clean = require('gulp-clean'),
+	del = require('del')
 
 //语法检查
 gulp.task('jshint', function () {
@@ -57,6 +59,13 @@ gulp.task('server',function(){
     }));
 })
 
+//删除文件
+gulp.task('clean:mobile', function (cb) {
+  del([
+    'dist/*',
+  ], cb);
+});
+
 gulp.task('default',['jshint'],function() {
-    gulp.start('image','minifycss','minifyjs'); 
+    gulp.start('clean:mobile'); 
 });

@@ -41,14 +41,14 @@ router.post('/login', function(req, res) {
 //id
 router.post('/getUser',function(req,res){
 	console.log(req.body)
-	cnt.connect();
-	let sql = 'select * from user where id='+req.body.id;
+//	cnt.connect();
+	let sql = 'select * from user ';
 	cnt.query(sql,function(error,result){
 		if (error) throw error;
 		res.writeHead(200, {"Content-Type": "application/json"});
-		res.end(JSON.stringify(result[0]));
+		res.end(JSON.stringify(result));
 	})
-	cnt.end();
+//	cnt.end();
 })
 
 module.exports = router;
