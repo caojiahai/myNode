@@ -8,10 +8,10 @@ var mysql = require('mysql');//引入数据库mysql
 //});
 
 const connection = mysql.createConnection({
-  host     : '127.0.0.1',
+  host     : '101.132.72.39',
   user     : 'root',
-  password : '123456',
-  database : 'mydb'
+  password : 'D0ng1in6750',
+  database : 'jiaoyiyou'
 });
 
 
