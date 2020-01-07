@@ -1,9 +1,8 @@
 var express = require('express');//用于管理路由
 var bodyParser = require('body-parser');//获取post请求body数据
-var routes = require('./src/routes/index');//引入路由
 var error = require('./src/error/index');//引入报错文件
-
 var app = express();
+var fs = require('fs');//文件相关操作
 
 app.all('*', function(req, res, next) {
 	//设置跨域访问
@@ -29,15 +28,33 @@ app.all('*', function(req, res, next) {
 });
 
 app.use(bodyParser.json()); //application/json
-app.use('/',routes)
+app.use('/index', require('./src/routes/index'));
+app.use('/demo', require('./src/routes/demo'));
 
 //处理请求不存在的路径
 app.use(function(req, res, next) {
-	let data = error(404,'当前请求路由不存在!')
-	res.writeHead(200, {"Content-Type": "application/json"});
-	res.end(JSON.stringify(data));
+	let url = req.url;//获取网页请求url
+	if(url === "/"){
+		//首页
+		res.writeHead(200,{'Content-Type':'html'});
+		fs.readFile('./src/www/index.html','utf-8',function(err,data){
+			if(err){
+				throw err ;
+			}
+			res.end(data);
+		});
+	}else{
+		//404
+		res.writeHead(200,{'Content-Type':'html'});
+		fs.readFile('./src/www/404.html','utf-8',function(err,data){
+			if(err){
+				throw err ;
+			}
+			res.end(data);
+		});	
+	}
 });
 
-app.listen(9999);//监听9999端口
-console.log('start success!')
+app.listen(9527);//监听9527端口
+console.log('server start success!')
 module.exports = app;

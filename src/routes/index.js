@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var querystring = require('querystring');
-var cnt = require('./../mysql/index');//引入mysql
+//var cnt = require('./../mysql/index');//引入mysql
 var url = require('url');//获取url参数
 var error = require('./../error/index');//引入报错文件
 
@@ -21,13 +21,11 @@ router.get('/getLocations',(req,res)=>{
 		res.writeHead(200, {"Content-Type": "application/json"});
 		res.end(JSON.stringify(data));
 	}
-
 })
 
 
 //登录
 router.get('/login', function(req, res) {
-    console.log(req.body)
 	let data = {
 		code:999,
 		data:{
@@ -47,7 +45,6 @@ router.post('/login', function(req, res) {
  	
     req.on('end', function(){
     	body = querystring.parse(body);
-    	console.log(body)
     })
 	let data = {
 		code:999,
