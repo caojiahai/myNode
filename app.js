@@ -1,8 +1,8 @@
-var express = require('express');//用于管理路由
-var bodyParser = require('body-parser');//获取post请求body数据
-var error = require('./src/error/index');//引入报错文件
-var app = express();
-var fs = require('fs');//文件相关操作
+let express = require('express');//用于管理路由
+let bodyParser = require('body-parser');//获取post请求body数据
+let error = require('./src/error/index');//引入报错文件
+let app = express();
+let fs = require('fs');//文件相关操作
 
 app.all('*', function(req, res, next) {
 	//设置跨域访问
@@ -16,8 +16,8 @@ app.all('*', function(req, res, next) {
         res.send(200);
     }else {
     	/*防止异步造成多次响应，出现错误*/
-        var _send = res.send;
-        var sent = false;
+        let _send = res.send;
+        let sent = false;
         res.send = function (data) {
             if (sent) return;
             _send.bind(res)(data);
@@ -27,9 +27,17 @@ app.all('*', function(req, res, next) {
     }
 });
 
+//引入静态资源
+app.use('/static/js',express.static('./static/js'));
+app.use('/static/img',express.static('./static/img'));
+app.use('/static/css',express.static('./static/css'));
+
+//解析post数据
 app.use(bodyParser.json()); //application/json
+
+//注入路由，按模块
 app.use('/index', require('./src/routes/index'));
-app.use('/demo', require('./src/routes/demo'));
+app.use('/home', require('./src/routes/home'));
 
 //处理请求不存在的路径
 app.use(function(req, res, next) {

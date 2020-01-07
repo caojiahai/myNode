@@ -10,11 +10,72 @@
 				padding: 10px;
 				text-align: center;
 			}
+			button {
+				border: 0;
+				cursor: pointer;
+			}
+			input::-webkit-calendar-picker-indicator {
+			    display: none;
+			    -webkit-appearance: none;
+			}
+			.searchButton {
+				padding: 9px 15px;
+				font-size: 20px;
+				background-color: #409EFF;
+				color: #FFFFFF;
+			}
+			.logo {
+				margin: 30px auto;
+			}
+			.logo img {
+				width: 200px;
+			}
+			.searchInput {
+				padding: 10px 15px;
+				font-size: 20px;
+			}
 		</style>
+		<script type="text/javascript" src="../../static/js/cTool.js" ></script>
 	</head>
 	<body>
 		<div class="center">
-			<h1>hello!</h1>
+			<div class="logo">
+				<img src="./../../static/img/heihei.jpg" />
+			</div>
+			<input class="searchInput" list="browsers" placeholder="请输入人名、诗名" id="searchData">
+			<button class="searchButton" onclick="search()">搜&nbsp;&nbsp;索</button>
+			<datalist id="browsers"></datalist>
 		</div>
 	</body>
 </html>
+<script>
+	//获取焦点
+	function getSearchData(){
+		$.ajax({
+			url: "http://localhost:9527/home/getSearch",
+			success: function(res){
+				let browsers = document.querySelector("#browsers"),arr = res.data;
+				arr.forEach((a) => {
+					let o = document.createElement("option");
+					o.value = a;
+					browsers.appendChild(o)
+				})
+			}
+		})
+	}
+	getSearchData();
+	
+	//获取搜索结果
+	function search(){
+		let searchKey = document.querySelector("#searchData").value;
+		if(!searchKey) return;
+		$.ajax({
+			url: "http://localhost:9527/home/search",
+			method: "POST",
+			data: JSON.stringify({searchData: searchKey}),
+			success: function(res){
+				console.log(res)
+			}
+		})
+	}
+</script>
