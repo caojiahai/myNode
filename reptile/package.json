@@ -1,0 +1,18 @@
+{
+  "name": "reptile",
+  "version": "0.0.0",
+  "author": "曹加海",
+  "description": "爬虫",
+  "scripts": {
+    "sd": "node demo.js",
+    "s": "node app.js",
+    "s1": "node app1.js",
+    "s2": "node app2.js",
+    "s3": "node app3.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "jsonfile": "^5.0.0"
+  },
+  "devDependencies": {}
+}
