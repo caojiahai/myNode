@@ -14,7 +14,7 @@
     "gulp-imagemin": "^4.0.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-webserver": "^0.9.1",
-    "mongodb": "^2.2.31",
+    "mongodb": "^3.1.13",
     "querystring": "^0.2.0",
     "utility": "^1.16.3"
   },
